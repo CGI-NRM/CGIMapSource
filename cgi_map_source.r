@@ -42,7 +42,7 @@ GenerateTable <- function(mapData, columnNames = c("Resultat", "Replikat")) {
       dom = "t",
       autoWidth = TRUE,
       # columnDefs = list(list(visible = FALSE, targets = c(1, 2))),
-      columnDefs = list(list(visible = FALSE, targets = match(c("Latitude", "Longitude"), colnames(mapData)))),
+      columnDefs = list(list(visible = FALSE, targets = match(c("Latitude", "Longitude"), colnames(mapData) + 1))),
       rowCallback = JS("
       function(row, data, index) {
         // data[0]=Prov, data[1]=Latitude, data[2]=Longitude, data[3]=Resultat, data[4]=Replikat

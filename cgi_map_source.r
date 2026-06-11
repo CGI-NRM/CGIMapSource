@@ -37,7 +37,7 @@ GenerateMapQPCR <- function(mapData) {
     ") # expose the map globally
 }
 
-GenerateTableQPCR <- function(mapData, columnNames = c("Resultat", "Replikat")) {
+GenerateTableQPCR <- function(mapData) {
   DT::datatable(
     data = mapData, 
     rownames = FALSE, 

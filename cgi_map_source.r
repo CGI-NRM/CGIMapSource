@@ -12,7 +12,7 @@ LoadCoordinates <- function(coordinateXLSX) {
   return(mapData)
 }
 
-GenerateMap <- function(mapData) {
+GenerateMapQPCR <- function(mapData) {
   colorByResultat <- colorFactor(palette = c("darkgreen", "red", "orange"), domain = c("positiv", "negativ", "okänd"), ordered = TRUE)
 
   counts_html <- paste0(
@@ -33,15 +33,16 @@ GenerateMap <- function(mapData) {
     ") # expose the map globally
 }
 
-GenerateTable <- function(mapData) {
+GenerateTable <- function(mapData, columnNames = c("Resultat", "Replikat")) {
   DT::datatable(
-    data = bisamData, 
+    data = mapData, 
     rownames = FALSE, 
     options = list(
       pageLength = 100, 
       dom = "t",
       autoWidth = TRUE,
-      columnDefs = list(list(visible = FALSE, targets = c(1, 2))),
+      # columnDefs = list(list(visible = FALSE, targets = c(1, 2))),
+      columnDefs = list(list(visible = FALSE, targets = match(c("Latitude", "Longitude"), colnames(mapData)))),
       rowCallback = JS("
       function(row, data, index) {
         // data[0]=Prov, data[1]=Latitude, data[2]=Longitude, data[3]=Resultat, data[4]=Replikat

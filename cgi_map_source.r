@@ -9,7 +9,7 @@ LoadCoordinatesQPCR <- function(coordinateXLSX) {
   mapData <- readxl::read_xlsx(coordinateXLSX)
   mapData$Latitude <- as.numeric(mapData$Latitude)
   mapData$Longitude <- as.numeric(mapData$Longitude)
-  if(colnames(mapData) == c("Prov", "Latitude", "Longitude", "Resultat", "Replikat")) {
+  if(all(colnames(mapData) == c("Prov", "Latitude", "Longitude", "Resultat", "Replikat"))) {
     return(mapData)
   } else {
     cat("Column names needs to be exactly: Prov, Latitude, Longitude, Resultat, Replikat")

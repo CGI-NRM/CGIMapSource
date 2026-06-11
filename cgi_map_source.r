@@ -17,8 +17,8 @@ GenerateMap <- function(mapData) {
 
   counts_html <- paste0(
     '<div style="background:white; padding:10px;">',
-    'Antal positiva prover: <span style="float:right; font-weight:bold"> ', sum(bisamData$Resultat == "positiv", na.rm = TRUE), "</span><br>",
-    'Antal negativa prover: <span style="float:right; font-weight:bold"> ', sum(bisamData$Resultat == "negativ", na.rm = TRUE), "</span>"
+    'Antal positiva prover: <span style="float:right; font-weight:bold"> ', sum(mapData$Resultat == "positiv", na.rm = TRUE), "</span><br>",
+    'Antal negativa prover: <span style="float:right; font-weight:bold"> ', sum(mapData$Resultat == "negativ", na.rm = TRUE), "</span>"
   )
   
   leaflet::leaflet(mapData, elementId = "myMap") %>%

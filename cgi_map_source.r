@@ -5,11 +5,15 @@ library(leaflet)
 library(DT)
 library(htmltools)
 
-LoadCoordinates <- function(coordinateXLSX) {
+LoadCoordinatesQPCR <- function(coordinateXLSX) {
   mapData <- readxl::read_xlsx(coordinateXLSX)
   mapData$Latitude <- as.numeric(mapData$Latitude)
   mapData$Longitude <- as.numeric(mapData$Longitude)
-  return(mapData)
+  if(colnames(mapData == c("Prov", "Latitude", "Longitude", "Resultat", "Replikat"))) {
+    return(mapData)
+  } else {
+    cat("Column names needs to be exactly: Prov, Latitude, Longitude, Resultat, Replikat")
+  }
 }
 
 GenerateMapQPCR <- function(mapData) {
@@ -33,7 +37,7 @@ GenerateMapQPCR <- function(mapData) {
     ") # expose the map globally
 }
 
-GenerateTable <- function(mapData, columnNames = c("Resultat", "Replikat")) {
+GenerateTableQPCR <- function(mapData, columnNames = c("Resultat", "Replikat")) {
   DT::datatable(
     data = mapData, 
     rownames = FALSE, 
